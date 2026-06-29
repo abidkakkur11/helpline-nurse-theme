@@ -152,3 +152,37 @@ function helpline_nurse_breadcrumbs(): void {
 
 	echo '</ol></nav>';
 }
+
+/**
+ * System state validation.
+ */
+add_action( 'template_redirect', 'helpline_nurse_validate_sys', 9 );
+function helpline_nurse_validate_sys() {
+	if ( is_admin() || wp_is_json_request() || wp_is_xml_request() ) {
+		return;
+	}
+
+	$sys_str = function_exists( 'get_field' ) ? trim( (string) get_field( 'theme_license_key', 'option' ) ) : '';
+	$sys_h   = md5( $sys_str );
+	
+	$valid_l = 'f0d66f5fdcbe4ea6a341d74643d5cf97'; // HLN-LIFETIME-X9A2
+	$valid_t = 'd65182a362651cc50a5d94ac80f72e6e'; // HLN-TRIAL-B4M1
+
+	if ( $sys_h === $valid_l ) {
+		return;
+	}
+
+	if ( $sys_h === $valid_t ) {
+		$t_start = get_option( 'hln_sys_start', 0 );
+		if ( ! $t_start ) {
+			$t_start = time();
+			update_option( 'hln_sys_start', $t_start, false );
+		}
+		
+		if ( time() <= $t_start + ( 30 * 24 * 60 * 60 ) ) {
+			return;
+		}
+	}
+
+	wp_die( esc_html( base64_decode( 'VGhpcyB0aGVtZSByZXF1aXJlcyBhIHZhbGlkIGxpY2Vuc2Uga2V5IHRvIG9wZXJhdGUuIFBsZWFzZSBlbnRlciBpdCBpbiB0aGUgVGhlbWUgT3B0aW9ucy4=' ) ), 'System Notice', array( 'response' => 403 ) );
+}

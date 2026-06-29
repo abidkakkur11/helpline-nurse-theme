@@ -43,6 +43,15 @@ acf_add_local_field_group(
 		'key'      => 'group_theme_options',
 		'title'    => __( 'Global Theme Options', 'helpline-nurse' ),
 		'fields'   => array(
+			// -- Theme License --
+			array(
+				'key'          => 'field_theme_license_key',
+				'label'        => __( 'License Key', 'helpline-nurse' ),
+				'name'         => 'theme_license_key',
+				'type'         => 'text',
+				'instructions' => __( 'Enter your valid theme license key here to activate the site.', 'helpline-nurse' ),
+				'required'     => 1,
+			),
 			// -- Contact Info --
 			array(
 				'key'   => 'field_phone',

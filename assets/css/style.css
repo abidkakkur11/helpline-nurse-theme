@@ -503,6 +503,12 @@ p {
 	display: block;
 }
 
+.service-card:hover .link-with-icon,
+.service-card:hover .link-with-icon svg {
+	color: var(--white) !important;
+}
+
+
 .service-card-image:hover .card-image-wrapper img { transform: scale(1.05); }
 
 .service-card-image .card-content {
@@ -879,7 +885,7 @@ p {
 
 .blog-sidebar {
 	background: var(--bg-accent);
-	padding: var(--space-lg);
+	padding: var(--space-md);
 	border-radius: var(--radius-lg);
 	position: sticky;
 	top: 100px;
@@ -1575,3 +1581,4 @@ select.form-control { appearance: auto; }
 	.cta-banner  { padding: var(--space-md); }
 	.error-code  { font-size: 5rem; }
 }
+

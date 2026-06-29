@@ -24,8 +24,14 @@ $social_links       = helpline_nurse_get_option( 'social_links', array() );
 
 			<!-- Company Info -->
 			<div class="footer-widget">
-				<h4 class="footer-logo-title"><?php echo esc_html( $site_name ); ?></h4>
-				<p><?php echo esc_html( $footer_desc ); ?></p>
+				<?php if ( has_custom_logo() ) : ?>
+					<div class="logo footer-logo" aria-label="<?php esc_attr_e( 'Site Logo', 'helpline-nurse' ); ?>">
+						<?php the_custom_logo(); ?>
+					</div>
+				<?php else : ?>
+					<h4 class="footer-logo-title"><?php echo esc_html( $site_name ); ?></h4>
+				<?php endif; ?>
+				<p style="margin-top: 1rem;"><?php echo esc_html( $footer_desc ); ?></p>
 
 				<?php if ( ! empty( $social_links ) ) : ?>
 					<div class="footer-social" aria-label="<?php esc_attr_e( 'Social Links', 'helpline-nurse' ); ?>">
@@ -107,18 +113,39 @@ $social_links       = helpline_nurse_get_option( 'social_links', array() );
 			<!-- Support Links -->
 			<div class="footer-widget">
 				<h4><?php esc_html_e( 'Support', 'helpline-nurse' ); ?></h4>
-				<ul class="footer-links">
-					<?php
-					$privacy_page = get_privacy_policy_url();
+				<?php
+				$support_menu_id = absint( get_theme_mod( 'helpline_nurse_support_menu', 0 ) );
+				$support_menu    = $support_menu_id ? wp_get_nav_menu_object( $support_menu_id ) : false;
+
+				if ( $support_menu || has_nav_menu( 'footer_support' ) ) {
+					wp_nav_menu(
+						array(
+							'theme_location' => 'footer_support',
+							'menu'           => $support_menu ? $support_menu_id : '',
+							'menu_id'        => 'footer-support-menu',
+							'container'      => false,
+							'menu_class'     => 'footer-links',
+							'depth'          => 1,
+						)
+					);
+				} else {
+					// Fallback static links.
 					?>
-					<li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>"><?php esc_html_e( 'FAQ', 'helpline-nurse' ); ?></a></li>
-					<?php if ( $privacy_page ) : ?>
-						<li><a href="<?php echo esc_url( $privacy_page ); ?>"><?php esc_html_e( 'Privacy Policy', 'helpline-nurse' ); ?></a></li>
-					<?php else : ?>
-						<li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy Policy', 'helpline-nurse' ); ?></a></li>
-					<?php endif; ?>
-					<li><a href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>"><?php esc_html_e( 'Terms of Service', 'helpline-nurse' ); ?></a></li>
-				</ul>
+					<ul class="footer-links">
+						<?php
+						$privacy_page = get_privacy_policy_url();
+						?>
+						<li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>"><?php esc_html_e( 'FAQ', 'helpline-nurse' ); ?></a></li>
+						<?php if ( $privacy_page ) : ?>
+							<li><a href="<?php echo esc_url( $privacy_page ); ?>"><?php esc_html_e( 'Privacy Policy', 'helpline-nurse' ); ?></a></li>
+						<?php else : ?>
+							<li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy Policy', 'helpline-nurse' ); ?></a></li>
+						<?php endif; ?>
+						<li><a href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>"><?php esc_html_e( 'Terms of Service', 'helpline-nurse' ); ?></a></li>
+					</ul>
+					<?php
+				}
+				?>
 			</div>
 
 			<!-- Contact Details -->

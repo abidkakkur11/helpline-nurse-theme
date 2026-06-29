@@ -69,8 +69,9 @@ function helpline_nurse_setup(): void {
 	// Register navigation menus.
 	register_nav_menus(
 		array(
-			'primary' => esc_html__( 'Primary Navigation', 'helpline-nurse' ),
-			'footer'  => esc_html__( 'Footer Navigation', 'helpline-nurse' ),
+			'primary'        => esc_html__( 'Primary Navigation', 'helpline-nurse' ),
+			'footer'         => esc_html__( 'Footer Navigation', 'helpline-nurse' ),
+			'footer_support' => esc_html__( 'Footer Support Navigation', 'helpline-nurse' ),
 		)
 	);
 
