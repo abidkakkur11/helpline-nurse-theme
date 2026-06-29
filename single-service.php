@@ -207,14 +207,14 @@ while ( have_posts() ) :
 							'posts_per_page' => 4,
 							'post_status'    => 'publish',
 							'post__not_in'   => array( $post_id ),
-							'orderby'        => 'rand',
+							'orderby'        => 'rand',	
 							'no_found_rows'  => true,
 						);
 						$related = new WP_Query( $related_args );
 						if ( $related->have_posts() ) :
 							?>
 							<div class="sidebar-widget">
-								<h4><?php esc_html_e( 'Related Services', 'helpline-nurse' ); ?></h4>
+								<h4><?php esc_html_e( 'Other Services', 'helpline-nurse' ); ?></h4>
 								<ul class="footer-links">
 									<?php
 									while ( $related->have_posts() ) :

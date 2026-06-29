@@ -58,7 +58,7 @@ function helpline_nurse_register_post_types(): void {
 		'hierarchical'       => false,
 		'menu_position'      => 5,
 		'menu_icon'          => 'dashicons-clipboard',
-		'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+		'supports'           => array( 'title', 'thumbnail', 'excerpt' ),
 		'show_in_rest'       => true,
 	);
 

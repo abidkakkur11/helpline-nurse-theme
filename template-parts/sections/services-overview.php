@@ -20,7 +20,7 @@ $service_ids = helpline_nurse_get_field( 'services_overview_posts', $page_id, ar
 // Build the query.
 $query_args = array(
 	'post_type'      => 'service',
-	'posts_per_page' => 3,
+	'posts_per_page' => 6,
 	'post_status'    => 'publish',
 	'no_found_rows'  => true,
 );

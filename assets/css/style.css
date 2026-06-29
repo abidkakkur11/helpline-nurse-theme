@@ -508,6 +508,33 @@ p {
 	color: var(--white) !important;
 }
 
+/* =========================================================================
+   SEARCH FORM
+   ========================================================================= */
+
+.search-form {
+	display: flex;
+	max-width: 500px;
+	margin: 0 auto;
+	align-items: center;
+}
+
+.search-form label {
+	flex-grow: 1;
+	margin-bottom: 0;
+	width: 100%;
+}
+
+.search-form .search-field {
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.search-form .search-submit {
+	margin-bottom: 0;
+	white-space: nowrap;
+}
+
 
 .service-card-image:hover .card-image-wrapper img { transform: scale(1.05); }
 

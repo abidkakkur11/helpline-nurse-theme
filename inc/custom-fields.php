@@ -329,7 +329,7 @@ acf_add_local_field_group(
 				'name'         => 'services_overview_posts',
 				'type'         => 'relationship',
 				'post_type'    => array( 'service' ),
-				'max'          => 3,
+				'max'          => 6,
 				'return_format'=> 'id',
 			),
 		),
