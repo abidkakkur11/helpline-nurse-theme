@@ -208,11 +208,27 @@ function helpline_nurse_cta_banner( string $title, string $desc, string $btn_url
 }
 
 /**
- * Outputs the site logo. Uses custom_logo if set, otherwise text fallback.
+ * Outputs the site logo. Uses custom logo if set based on location, otherwise fallback.
  *
+ * @param string $location Location of the logo ('header' or 'footer'). Default 'header'.
  * @return void
  */
-function helpline_nurse_site_logo(): void {
+function helpline_nurse_site_logo( string $location = 'header' ): void {
+	$logo_id = false;
+
+	if ( 'footer' === $location ) {
+		$logo_id = get_theme_mod( 'helpline_nurse_footer_logo' );
+	} else {
+		$logo_id = get_theme_mod( 'helpline_nurse_header_logo' );
+	}
+
+	if ( $logo_id ) {
+		echo '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home" class="custom-logo-link">';
+		echo wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'custom-logo' ) );
+		echo '</a>';
+		return;
+	}
+
 	if ( has_custom_logo() ) {
 		the_custom_logo();
 		return;

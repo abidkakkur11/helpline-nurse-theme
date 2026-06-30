@@ -24,7 +24,16 @@ $social_links       = helpline_nurse_get_option( 'social_links', array() );
 
 			<!-- Company Info -->
 			<div class="footer-widget">
-				<?php if ( has_custom_logo() ) : ?>
+				<?php
+				$footer_logo_id = get_theme_mod( 'helpline_nurse_footer_logo' );
+				if ( $footer_logo_id ) :
+				?>
+					<div class="logo footer-logo" aria-label="<?php esc_attr_e( 'Site Logo', 'helpline-nurse' ); ?>">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="custom-logo-link">
+							<?php echo wp_get_attachment_image( $footer_logo_id, 'full', false, array( 'class' => 'custom-logo' ) ); ?>
+						</a>
+					</div>
+				<?php elseif ( has_custom_logo() ) : ?>
 					<div class="logo footer-logo" aria-label="<?php esc_attr_e( 'Site Logo', 'helpline-nurse' ); ?>">
 						<?php the_custom_logo(); ?>
 					</div>

@@ -54,8 +54,54 @@ function helpline_nurse_customize_register( WP_Customize_Manager $wp_customize )
 		'helpline_nurse_theme_settings',
 		array(
 			'title'       => esc_html__( 'Theme Settings', 'helpline-nurse' ),
-			'description' => esc_html__( 'Select the menus used by the theme header and footer.', 'helpline-nurse' ),
+			'description' => esc_html__( 'Configure theme specific settings including logos and menus.', 'helpline-nurse' ),
 			'priority'    => 80,
+		)
+	);
+
+	// Header Logo.
+	$wp_customize->add_setting(
+		'helpline_nurse_header_logo',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'absint',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'helpline_nurse_header_logo',
+			array(
+				'label'       => esc_html__( 'Header Logo', 'helpline-nurse' ),
+				'description' => esc_html__( 'Overrides the default site logo in the header.', 'helpline-nurse' ),
+				'section'     => 'helpline_nurse_theme_settings',
+				'mime_type'   => 'image',
+			)
+		)
+	);
+
+	// Footer Logo.
+	$wp_customize->add_setting(
+		'helpline_nurse_footer_logo',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'absint',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'helpline_nurse_footer_logo',
+			array(
+				'label'       => esc_html__( 'Footer Logo', 'helpline-nurse' ),
+				'description' => esc_html__( 'Overrides the default site logo in the footer.', 'helpline-nurse' ),
+				'section'     => 'helpline_nurse_theme_settings',
+				'mime_type'   => 'image',
+			)
 		)
 	);
 
