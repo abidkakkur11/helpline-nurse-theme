@@ -17,6 +17,24 @@ define( 'HELPLINE_NURSE_DIR', get_template_directory() );
 define( 'HELPLINE_NURSE_URI', get_template_directory_uri() );
 
 /**
+ * Bundle Secure Custom Fields (SCF)
+ */
+define( 'HELPLINE_NURSE_SCF_PATH', HELPLINE_NURSE_DIR . '/inc/plugins/secure-custom-fields/' );
+define( 'HELPLINE_NURSE_SCF_URL', HELPLINE_NURSE_URI . '/inc/plugins/secure-custom-fields/' );
+
+// Include the SCF plugin.
+include_once( HELPLINE_NURSE_SCF_PATH . 'secure-custom-fields.php' );
+
+// Customize the url setting to fix asset URLs for the bundled plugin.
+add_filter( 'acf/settings/url', 'helpline_nurse_scf_settings_url' );
+function helpline_nurse_scf_settings_url( $url ) {
+	return HELPLINE_NURSE_SCF_URL;
+}
+
+// Hide the Custom Fields menu from the admin sidebar.
+add_filter( 'acf/settings/show_admin', '__return_false' );
+
+/**
  * Load theme modules.
  */
 require_once HELPLINE_NURSE_DIR . '/inc/setup.php';
