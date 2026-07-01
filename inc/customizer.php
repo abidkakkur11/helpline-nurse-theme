@@ -250,3 +250,22 @@ function helpline_nurse_customize_register( WP_Customize_Manager $wp_customize )
 }
 add_action( 'customize_register', 'helpline_nurse_customize_register' );
 
+/**
+ * Display a notice on the Theme Options page linking to the Customizer.
+ */
+function helpline_nurse_admin_notice_customizer_link() {
+	$screen = get_current_screen();
+	if ( $screen && $screen->id === 'toplevel_page_helpline-nurse-options' ) {
+		$customizer_url = admin_url( 'customize.php' );
+		?>
+		<div class="notice notice-info">
+			<p>
+				<?php esc_html_e( 'Looking for colors, typography, or global layout settings?', 'helpline-nurse' ); ?>
+				<a href="<?php echo esc_url( $customizer_url ); ?>" class="button button-secondary" style="margin-left: 10px;"><?php esc_html_e( 'Go to Customizer', 'helpline-nurse' ); ?></a>
+			</p>
+		</div>
+		<?php
+	}
+}
+add_action( 'admin_notices', 'helpline_nurse_admin_notice_customizer_link' );
+
