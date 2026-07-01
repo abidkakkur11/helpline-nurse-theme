@@ -21,10 +21,13 @@ function helpline_nurse_scripts(): void {
 	$style_path    = HELPLINE_NURSE_DIR . '/assets/css/style.css';
 	$script_path   = HELPLINE_NURSE_DIR . '/assets/js/main.js';
 
-	// Google Fonts – Inter (300 to 800).
+	$font_family = get_theme_mod( 'helpline_nurse_font_family', 'Inter' );
+	$font_url    = 'https://fonts.googleapis.com/css2?family=' . urlencode( $font_family ) . ':wght@300;400;500;600;700;800&display=swap';
+
+	// Google Fonts.
 	wp_enqueue_style(
 		'helpline-nurse-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap',
+		$font_url,
 		array(),
 		null
 	);

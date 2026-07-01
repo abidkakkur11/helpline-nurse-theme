@@ -182,7 +182,7 @@ p {
 }
 
 .section-padding {
-	padding: var(--space-xl) 0;
+	padding: var(--space-xxl) 0;
 }
 
 .text-center  { text-align: center; }
@@ -293,7 +293,7 @@ p {
 
 .logo img,
 .logo svg {
-	height: 50px;
+	height: 65px;
 	width: auto;
 }
 
@@ -1302,7 +1302,7 @@ select.form-control { appearance: auto; }
    BREADCRUMBS
    ========================================================================= */
 
-.breadcrumbs { margin-bottom: var(--space-sm); }
+.breadcrumbs { margin-bottom: var(--space-lg); }
 
 .breadcrumb-list {
 	display: flex;
@@ -1576,14 +1576,29 @@ select.form-control { appearance: auto; }
 	.grid-cols-2, .grid-cols-3, .grid-cols-4, .grid-cols-5 { grid-template-columns: 1fr; }
 	.services-grid-large { grid-template-columns: 1fr; }
 	.footer-grid { grid-template-columns: 1fr; text-align: center; }
+	.footer-logo { width: 100%; display: flex; justify-content: center; }
+	.footer-logo img, .footer-logo svg { margin: 0 auto; }
 	.process-steps { grid-template-columns: 1fr; }
-	.section-padding { padding: var(--space-lg) 0; }
+	.section-padding { padding: var(--space-xl) 0; }
 
 	/* Hero mobile */
-	.hero-modern-light { min-height: auto; }
+	.hero-modern-light { min-height: auto; padding-bottom: var(--space-lg); flex-direction: column; }
 	.hero-modern-light .container { grid-template-columns: 1fr; gap: var(--space-md); }
-	.hero-modern-light .hero-image-wrapper { display: none; }
-	.hero-modern-light .hero-content { padding: var(--space-md) 0; }
+	.hero-modern-light .hero-image-wrapper { 
+		position: relative;
+		width: 100%;
+		height: auto;
+		display: flex;
+		justify-content: center;
+		margin-top: var(--space-md);
+		margin-bottom: var(--space-md);
+		padding: var(--space-md);
+	}
+	.hero-modern-light .hero-image-wrapper img {
+		max-height: 400px;
+		width: 100%;
+	}
+	.hero-modern-light .hero-content { padding: var(--space-lg) 0 0 0; }
 
 	/* Typography */
 	h1, .page-header h1, .blog-title, .service-content h1 { font-size: 2.1rem; }
@@ -1605,7 +1620,7 @@ select.form-control { appearance: auto; }
 	h1, .page-header h1, .blog-title { font-size: 1.8rem; }
 	h2  { font-size: 1.4rem; }
 	.stat-number { font-size: 2rem; }
-	.cta-banner  { padding: var(--space-md); }
+	.cta-banner  { padding: var(--space-lg); }
 	.error-code  { font-size: 5rem; }
 }
 

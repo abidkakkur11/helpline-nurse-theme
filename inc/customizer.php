@@ -142,6 +142,111 @@ function helpline_nurse_customize_register( WP_Customize_Manager $wp_customize )
 			'choices' => helpline_nurse_get_menu_choices(),
 		)
 	);
+
+	// Colors Section (built-in 'colors').
+	$wp_customize->add_setting( 'helpline_nurse_primary_color', array(
+		'default'           => '#1a9381',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'helpline_nurse_primary_color', array(
+		'label'   => esc_html__( 'Primary Color', 'helpline-nurse' ),
+		'section' => 'colors',
+	) ) );
+
+	$wp_customize->add_setting( 'helpline_nurse_secondary_color', array(
+		'default'           => '#11363e',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'helpline_nurse_secondary_color', array(
+		'label'   => esc_html__( 'Secondary Color', 'helpline-nurse' ),
+		'section' => 'colors',
+	) ) );
+
+	$wp_customize->add_setting( 'helpline_nurse_text_color', array(
+		'default'           => '#2d3748',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'helpline_nurse_text_color', array(
+		'label'   => esc_html__( 'Text Color', 'helpline-nurse' ),
+		'section' => 'colors',
+	) ) );
+
+	// Typography Section.
+	$wp_customize->add_section( 'helpline_nurse_typography', array(
+		'title'       => esc_html__( 'Typography', 'helpline-nurse' ),
+		'description' => esc_html__( 'Select your primary font family.', 'helpline-nurse' ),
+		'priority'    => 85,
+	) );
+
+	$wp_customize->add_setting( 'helpline_nurse_font_family', array(
+		'default'           => 'Inter',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'helpline_nurse_font_family', array(
+		'label'   => esc_html__( 'Base Font Family', 'helpline-nurse' ),
+		'section' => 'helpline_nurse_typography',
+		'type'    => 'select',
+		'choices' => array(
+			'Inter'      => 'Inter',
+			'Roboto'     => 'Roboto',
+			'Poppins'    => 'Poppins',
+			'Montserrat' => 'Montserrat',
+			'Lato'       => 'Lato',
+			'Open Sans'  => 'Open Sans',
+		),
+	) );
+
+	// Global Settings Section.
+	$wp_customize->add_section( 'helpline_nurse_global_settings', array(
+		'title'       => esc_html__( 'Global Settings', 'helpline-nurse' ),
+		'description' => esc_html__( 'Professional global layout options.', 'helpline-nurse' ),
+		'priority'    => 90,
+	) );
+
+	$wp_customize->add_setting( 'helpline_nurse_border_radius', array(
+		'default'           => 'md',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'helpline_nurse_border_radius', array(
+		'label'   => esc_html__( 'Border Radius (Cards & Buttons)', 'helpline-nurse' ),
+		'section' => 'helpline_nurse_global_settings',
+		'type'    => 'select',
+		'choices' => array(
+			'none' => 'Square (0px)',
+			'sm'   => 'Small (8px)',
+			'md'   => 'Rounded (16px)',
+			'lg'   => 'Large (24px)',
+			'pill' => 'Pill (Full)',
+		),
+	) );
+
+	$wp_customize->add_setting( 'helpline_nurse_sticky_header', array(
+		'default'           => true,
+		'sanitize_callback' => 'wp_validate_boolean',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'helpline_nurse_sticky_header', array(
+		'label'   => esc_html__( 'Enable Sticky Header', 'helpline-nurse' ),
+		'section' => 'helpline_nurse_global_settings',
+		'type'    => 'checkbox',
+	) );
+
+	$wp_customize->add_setting( 'helpline_nurse_agency_branding', array(
+		'default'           => '',
+		'sanitize_callback' => 'wp_kses_post',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'helpline_nurse_agency_branding', array(
+		'label'       => esc_html__( 'Footer Agency Branding Text', 'helpline-nurse' ),
+		'description' => esc_html__( 'Custom text or HTML to display in the footer.', 'helpline-nurse' ),
+		'section'     => 'helpline_nurse_global_settings',
+		'type'        => 'textarea',
+	) );
 }
 add_action( 'customize_register', 'helpline_nurse_customize_register' );
 

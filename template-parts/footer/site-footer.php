@@ -183,6 +183,12 @@ $social_links       = helpline_nurse_get_option( 'social_links', array() );
 
 		<div class="footer-bottom">
 			<p><?php echo wp_kses_post( $footer_copyright ); ?></p>
+			<?php
+			$agency_branding = get_theme_mod( 'helpline_nurse_agency_branding' );
+			if ( ! empty( $agency_branding ) ) {
+				echo '<div class="footer-branding" style="margin-top: 10px; font-size: 0.85rem; opacity: 0.8;">' . wp_kses_post( $agency_branding ) . '</div>';
+			}
+			?>
 		</div>
 
 	</div><!-- .container -->

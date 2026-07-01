@@ -40,6 +40,7 @@ add_filter( 'acf/settings/show_admin', '__return_false' );
 require_once HELPLINE_NURSE_DIR . '/inc/setup.php';
 require_once HELPLINE_NURSE_DIR . '/inc/enqueue.php';
 require_once HELPLINE_NURSE_DIR . '/inc/customizer.php';
+require_once HELPLINE_NURSE_DIR . '/inc/customizer-css.php';
 require_once HELPLINE_NURSE_DIR . '/inc/custom-post-types.php';
 require_once HELPLINE_NURSE_DIR . '/inc/template-functions.php';
 require_once HELPLINE_NURSE_DIR . '/inc/template-tags.php';

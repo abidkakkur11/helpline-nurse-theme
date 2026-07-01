@@ -7,8 +7,10 @@
  * @package HelplineNurse
  */
 
+$is_sticky    = get_theme_mod( 'helpline_nurse_sticky_header', true );
+$header_style = $is_sticky ? '' : ' style="position: relative;"';
 ?>
-<header class="site-header" id="site-header" role="banner">
+<header class="site-header" id="site-header" role="banner"<?php echo $header_style; ?>>
 	<div class="container">
 
 		<!-- Logo -->
